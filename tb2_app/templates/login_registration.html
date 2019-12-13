@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trip Buddy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h1>Welcome! Let's travel!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <!--registration form-->
+            <div class="col-sm">
+                <h4>Register</h4>
+                <form action="register" method="POST">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input name="first_name" class="form-control" type="text" placeholder="First Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input name="last_name" class="form-control" type="text" placeholder="Last Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input name="email" class="form-control" type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input name="password" class="form-control" type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input name="confirm_password" class="form-control" type="password" placeholder="Confirm Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-right">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--login form-->
+            <div class="col-sm">
+                <h4>Login</h4>
+                <form action="login" method="POST">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input name="email" class="form-control" type="text" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class='form-group'>
+                                <label for="password">Password</label>
+                                <input name="password" class="form-control" type="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-right">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                    </form>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

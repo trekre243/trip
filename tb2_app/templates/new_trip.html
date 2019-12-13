@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!--hello text-->
+            <div class="col-sm">
+                <h1>Hello {{ user.first_name }}! Create a trip!</h1>
+            </div>
+            <div class="col-sm text-right">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <form action="/create_trip" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input name="destination" class="form-control" type="text" placeholder="Destination">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input name="start_date" class="form-control" type="date">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input name="end_date" class="form-control" type="date">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="plan">Plan</label>
+                        <textarea name="plan" class="form-control" cols="30" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <a href="/dashboard" class="btn btn-danger">Cancel</a>
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    <ul class="messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
